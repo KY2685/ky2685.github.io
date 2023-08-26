@@ -85,19 +85,24 @@
     }
 
     function validateLoginForm(event) {
-      event.preventDefault(); // 防止表單提交
-      
-      var usernameInput = document.getElementById("username");
-      var passwordInput = document.getElementById("password");
-      
-      if (usernameInput.value && passwordInput.value === "ADMIN") {
-        alert("登入成功！");
-      } else {
-        alert("無效的帳號！");
-      }
-      usernameInput.value = "";
-      passwordInput.value = "";
-    }
+  event.preventDefault(); // 防止表單提交
+
+  var usernameInput = document.getElementById("username");
+  var passwordInput = document.getElementById("password");
+
+  var username = usernameInput.value;
+  var password = passwordInput.value;
+
+  if ((username === "ADMIN" || username === "Admin" || username === "admin") && password === "your_password") {
+    alert("登入成功！");
+  } else {
+    alert("無效的帳號或密碼！");
+  }
+
+  // 清空表單
+  usernameInput.value = "";
+  passwordInput.value = "";
+}
   </script>
 </body>
 </html>
