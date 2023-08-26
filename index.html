@@ -69,7 +69,9 @@
     
     <input type="submit" value="Login">
   </form>
-
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
   <script>
     function togglePassword() {
       var passwordInput = document.getElementById("password");
@@ -84,7 +86,8 @@
       }
     }
 
-    function validateLoginForm(event) {
+    
+  function validateLoginForm(event) {
   event.preventDefault(); // 防止表單提交
 
   var usernameInput = document.getElementById("username");
@@ -94,7 +97,6 @@
   var password = passwordInput.value;
 
   if (username === "ADMIN" && password === "ADMIN"|| username === "Admin" && password === "Admin"|| username === "admin" && password === "admin") {
-    alert("登入成功！");
   } else {
     alert("無效的帳號或密碼！");
   }
