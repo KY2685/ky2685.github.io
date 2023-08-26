@@ -57,7 +57,7 @@
   </style>
 </head>
 <body>
-  <form>
+  <form action="/login" method="post" onsubmit="validateLoginForm(event)">
     <label for="username">Username</label>
     <input type="text" id="username" name="username" maxlength="30" required>
     
@@ -95,6 +95,8 @@
       } else {
         alert("無效的帳號！");
       }
+      usernameInput.value = "";
+      passwordInput.value = "";
     }
   </script>
 </body>
