@@ -1,125 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Asia Catering Order System</title>
-	<style>
-		body {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			min-height: 100vh;
-		}
-
-		form {
-        	display: flex;
-			flex-direction: column;
-			align-items: middle;
-			justify-content: center;
-			padding: 20px;
-			background-color: #f2f2f2;
-			border-radius: 5px;
-			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-		}
-
-		form label {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			margin-bottom: 10px;
-		}
-
-		form label span {
-			flex-grow: 1;
-			margin-right: 10px;
-		}
-
-		input[type="text"], input[type="password"] {
-			padding: 10px;
-			margin: 10px;
-			border: none;
-			border-radius: 3px;
-			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-			width: 100%;
-		}
-
-		input[type="submit"] {
-			padding: 10px;
-			margin: 10px;
-			border: none;
-			border-radius: 3px;
-			background-color: #4CAF50;
-			color: white;
-			cursor: pointer;
-			width: 100%;
-			font-weight: bold;
-			font-size: 16px;
-		}
-
-		input[type="submit"]:hover {
-			background-color: #3e8e41;
-		}
-
-		.show-password {
-			flex-direction: row;
-			align-items: left;
-			cursor: pointer;
-		}
-
-		.show-password label {
-			flex-grow: 1;
-			color: #333;
-		}
-
-		#show-password {
-            display: inline-block;
-            margin-left: 10px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-        }
-
-		#show-password:hover {
-            background-color: #3e8e41;
-        }
-
-	</style>
+  <title>登入系統</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    
+    form {
+      border: 1px solid #ccc;
+      width: 50%;
+      padding: 40px;
+      border-radius: 10px;
+    }
+    
+    form label {
+      display: block;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    
+    form input[type="text"],
+    form input[type="password"] {
+      width: 94%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    
+    form input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      width: 100%;
+      padding: 10px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .password-container {
+      position: relative;
+    }
+    
+    .password-toggle {
+      position: absolute;
+      top: 0%;
+      right: 0%;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
 </head>
+<body>
+  <form>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" maxlength="30" required>
+    
+    <label for="password">Password</label>
+    <div class="password-container">
+      <input type="password" id="password" name="password" maxlength="30"  required>
+      <span class="password-toggle" onclick="togglePassword()">Show</span>
+    </div>
+    
+    <input type="submit" value="Login">
+  </form>
 
-<body style="background-color:#ECF1C1;">
-	<h1>Asia Catering Order System</h1>
-	<form>
-		<h1 align="center">Login</h1>
-		<label>
-			<label for="username"><b>Username</b></label>
-			<input type="text" id="username" name="username">
-		</label>
-		<label >
-			<label for="password"><b>Password</b></label>
-			<input type="password" id="password" name="password">
-            <div class="show-password">
-<span id="show-password" onclick="togglePasswordVisibility()"><b>Show</b></span></div>
-		</label>
-		<input type="submit" onclick="toggleSubmit()" value="Login">
-	</form>
-	<script>
-		
-		function togglePasswordVisibility() {
-			var passwordInput = document.getElementById("password");
-			var showPasswordButton = document.getElementById("show-password");
-			if (passwordInput.type === "password") {
-				passwordInput.type = "text";
-				showPasswordButton.textContent = "Hide";
-			} else {
-				passwordInput.type = "password";
-				showPasswordButton.textContent = "Show";
-			}
-		}
-		function toggleSubmit() {
-		
-		}
-	</script>
+  <script>
+    function togglePassword() {
+      var passwordInput = document.getElementById("password");
+      var passwordToggle = document.querySelector(".password-toggle");
+      
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        passwordToggle.textContent = "Hide";
+      } else {
+        passwordInput.type = "password";
+        passwordToggle.textContent = "Show";
+      }
+    }
+  </script>
 </body>
 </html>
