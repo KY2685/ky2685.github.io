@@ -1,92 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>OrderSystme</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-    }
-    
-    form {
-      border: 1px solid #ccc;
-      width: 50%;
-      padding: 40px;
-      border-radius: 10px;
-    }
-    
-    form label {
-      display: block;
-      text-align: left;
-      margin-bottom: 10px;
-    }
-    
-    form input[type="text"],
-    form input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    
-    form input[type="submit"] {
-      background-color: #4CAF50;
-      color: white;
-      width: 100%;
-      padding: 10px 10px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    
-    .password-container {
-      position: relative;
-    }
-    
-    .password-toggle {
-      position: absolute;
-      top: 0%;
-      right: 0%;
-      padding: 10px;
-      cursor: pointer;
-    }
-  </style>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+form {
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+</style>
+  <title>Order System</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <form action="/login" method="post" onsubmit="validateLoginForm(event)">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" maxlength="30" required>
-    
-    <label for="password">Password</label>
-    <div class="password-container">
-      <input type="password" id="password" name="password" maxlength="30"  required>
-      <span class="password-toggle" onclick="togglePassword()">Show</span>
-    </div>
-    
-    <input type="submit" value="Login">
-  </form>
-  
+  <header>
+    <h1>Login System</h1>
+  </header>
+  <main>
+    <section>
+      <h2>用户登录</h2>
+      <form action="login.php" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="Login">
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 登录系统</p>
+  </footer>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   
-  <script>
-    function togglePassword() {
-      var passwordInput = document.getElementById("password");
-      var passwordToggle = document.querySelector(".password-toggle");
-      
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        passwordToggle.textContent = "Hide";
-      } else {
-        passwordInput.type = "password";
-        passwordToggle.textContent = "Show";
-      }
-    }
-
-    
+  <script> 
   function validateLoginForm(event) {
   event.preventDefault(); // 防止表單提交
 
