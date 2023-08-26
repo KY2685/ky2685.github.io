@@ -64,7 +64,7 @@ footer {
   <main>
     <section>
       <h2>Login</h2>
-      <form action="login.php" method="post">
+      <form action="/login" method="post" onsubmit="validateLoginForm(event)">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required><br>
         <label for="password">Password</label>
