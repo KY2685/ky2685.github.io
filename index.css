@@ -25,12 +25,11 @@ section {
 
 form {
   width: 300px;
-  padding: 20px;
+  padding: 50px;
 }
 
 label {
   display: block;
-  margin-top: 10px;
   margin-bottom: 10px;
 }
 
