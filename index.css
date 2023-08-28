@@ -26,7 +26,7 @@ section {
 form {
   width: 300px;
   padding: 50px;
-  margin-top: 100px;
+  margin: auto;
 }
 
 label {
