@@ -20,5 +20,19 @@
   <footer>
     <p>&copy; 2023 Asia Catering</p>
   </footer>
+
+  <script>
+    // 當點擊導航連結時，阻止默認行為，並執行轉頁操作
+document.addEventListener('DOMContentLoaded', function() {
+  var links = document.querySelectorAll('.navbar a');
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetPage = this.getAttribute('href');
+      window.location.href = targetPage;
+    });
+  }
+});
+  </script>
 </body>
 </html>
