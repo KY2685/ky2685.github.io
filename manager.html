@@ -33,17 +33,6 @@
   </footer>
 
   <script>
-    CREATE DATABASE management_system;
-
-USE management_system;
-
-CREATE TABLE tables (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  table_number VARCHAR(10) NOT NULL,
-  capacity INT NOT NULL,
-  status ENUM('空桌', '已開桌') NOT NULL
-);
-    
     function TableManager() {
   window.open("table.html");
 }
@@ -51,6 +40,9 @@ CREATE TABLE tables (
 function MenuManager() {
   window.open("menu.html");
 }
+
+
+    
   </script>
 </body>
 </html>
