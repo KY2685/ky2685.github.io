@@ -63,11 +63,17 @@ nav ul {
   background-color: #555;
 }
 
+nav ul li {
+  display: inline-block;
+}
+
 nav ul li a {
+  display: block;
   padding: 10px 20px;
   color: #fff;
   text-decoration: none;
 }
+
 
 nav ul li a:hover {
   background-color: #777;
