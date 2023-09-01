@@ -11,8 +11,8 @@
   </header>
   <nav>
     <ul>
-      <li onclick="changePage('tables')">桌子管理</li>
-      <li><a href="#food">食物管理</a></li>
+      <li><a onclick="openTableManagement()">桌子管理</li>
+      <li><a onclick="openMenuManagement()">進入菜單管理</a></li>
       <li><a href="#prices">价格管理</a></li>
     </ul>
   </nav>
@@ -22,18 +22,12 @@
   </footer>
 
   <script>
-    function changePage(page) {
-      var tablesDiv = document.getElementById('tables');
-      var menuDiv = document.getElementById('menu');
-      
-      if (page === 'tables') {       
-        tablesDiv.style.display = 'block';
-        menuDiv.style.display = 'none';
-        window.location.href = "tables.html";
-      } else if (page === 'menu') {
-        tablesDiv.style.display = 'none';
-        menuDiv.style.display = 'block';
-      }
+    function openTableManagement() {
+      window.location.href = "table_management.html";
+    }
+
+    function openMenuManagement() {
+      window.location.href = "menu_management.html";
     }
   </script>
 </body>
