@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Table Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    #table-list {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    
+    #table-list th,
+    #table-list td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    
+    #table-list th {
+      background-color: #f2f2f2;
+    }
+    
+    .table-button {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .table-button.available {
+      background-color: #00cc00;
+    }
+    
+    .table-button.occupied {
+      background-color: #ff0000;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <h1>Table Management</h1>
+
+  <table id="table-list">
+    <thead>
+      <tr>
+        <th>Table No.</th>
+        <th>Table for</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+  </table>
+
+  <script>
+    const tables = [
+      { id: 1, location: 'A1', capacity: , status: 'available' },
+      { id: 2, location: 'B2', capacity: , status: 'available' },
+      { id: 3, location: 'C3', capacity: , status: 'available' },
+      { id: 4, location: 'C3', capacity: , status: 'available' },
+      { id: 5, location: 'C3', capacity: , status: 'available' },
+      { id: 6, location: 'C3', capacity: , status: 'available' },
+      { id: 7, location: 'C3', capacity: , status: 'available' },
+      { id: 8, location: 'C3', capacity: , status: 'available' },
+    ];
+
+    window.addEventListener('DOMContentLoaded', function() {
+      displayTables();
+    });
+
+    function displayTables() {
+      const tableList = document.querySelector('#table-list tbody');
+
+      tableList.innerHTML = '';
+
+      tables.forEach(function(table) {
+        const tableRow = document.createElement('tr');
+        const buttonClass = table.status === 'available' ? 'available' : 'occupied';
+        const buttonDisabled = table.status === 'occupied' ? 'disabled' : '';
+        tableRow.innerHTML = `
+          <td>${table.location}</td>
+          <td>${table.capacity}</td>
+          <td>
+            <button id="table-button-${table.id}" class="table-button ${buttonClass}" onclick="openTable(${table.id})" ${buttonDisabled}>${table.location}</button>
+          </td>
+        `;
+
+        tableList.appendChild(tableRow);
+      });
+    }
+
+    // 打开桌子
+    function openTable(tableId) {
+      // 在此处执行打开桌子的操作，例如发送请求到服务器等
+
+      const table = tables.find(table => table.id === tableId);
+      if (table && table.status === 'available') {
+        table.status = 'occupied';
+        const tableButton = document.querySelector(`#table-button-${table.id}`);
+        tableButton.classList.remove('available');
+        tableButton.classList.add('occupied');
+        tableButton.disabled = true;
+      }
+
+      // 跳转到新页面
+      window.location.href = 'opened_table.html';
+    }
+  </script>
+</body>
+</html>
