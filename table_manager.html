@@ -105,7 +105,22 @@
 
     // 调用 displayTables() 来初始化表格
     displayTables();
-    
+
+    //----------------------------------------------------------------------
+
+    var db = firebase.database();
+    db.ref("/number")
+    var path = "number";
+    db.ref(`/${path}`)
+
+    db.ref("/number/1").set({
+    seat: 2
+})
+.then(function () {
+    alert("建立成功");
+}).catch(function () {
+    alert("伺服器發生錯誤，請稍後再試");
+});
 </script>
 </body>
 </html>
