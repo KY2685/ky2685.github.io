@@ -59,24 +59,6 @@
     
   //---------------------------------------------------------------------------------------------
 
-    function openTable() {
-      var tableNumber = prompt('請輸入桌子號碼：');
-      var seats = prompt('請輸入座位數目：');
-
-      // 更新桌子的座位數目
-      database.ref('tables/' + tableNumber).set({
-        tableNumber: tableNumber,
-        seats: seats,
-        status: '未開桌'
-      }, function(error) {
-        if (error) {
-          alert('更新桌子座位數目失敗：' + error.message);
-        } else {
-          alert('成功更新桌子座位數目！');
-          displayTables();
-        }
-      });
-    }
 
     function displayTables() {
       var tableList = document.getElementById('tableList');
