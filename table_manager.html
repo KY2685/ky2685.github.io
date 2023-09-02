@@ -7,67 +7,58 @@
   <link rel="stylesheet" type="text/css" href="manager.css">
 </head>
 <body>
-  <head><h1>Table Management</h1></head>
+  <header><h1>Table Management</h1></header>
   <nav>
     <ul>
       <li><a onclick="TableManager()">桌子管理</a></li>
-      <li><a onclick="MenuManager()">進入菜單管理</a></li>
+      <li><a onclick="MenuManager()">进入菜单管理</a></li>
       <li><a href="#prices">价格管理</a></li>
     </ul>
   </nav>
   <main>
-
-
-  <table id="table-list">
-    <thead>
-      <tr>
-        <th>Table</th>
-        <th>Seat</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-  </table>
+    <table id="table-list">
+      <thead>
+        <tr>
+          <th>Table</th>
+          <th>Seat</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+    </table>
   </main>
-  
   <footer>
     <p>&copy; 2023 Asia Catering</p>
   </footer>
 
-  
   <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js"></script>
   
   <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBDK_0N8joTxl24VD8nyTJVLiMYGNhEX4A",
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBDK_0N8joTxl24VD8nyTJVLiMYGNhEX4A",
     authDomain: "ordersystem-9032b.firebaseapp.com",
-    databaseURL: "https://ordersystem-9032b-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    databaseURL: "https://ordersystem-9032b-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "ordersystem-9032b",
     storageBucket: "ordersystem-9032b.appspot.com",
     messagingSenderId: "506054131652",
     appId: "1:506054131652:web:58f99fa3f9099ec671ee91",
     measurementId: "G-CPWPWX6829"
-  };
+    };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const database = firebase.database();
-    
-  //---------------------------------------------------------------------------------------------
-
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = firebase.database();
 
     function displayTables() {
-      var tableList = document.getElementById('tableList');
+      var tableList = document.getElementById('table-list');
       tableList.innerHTML = '';
 
       database.ref('tables').on('value', function(snapshot) {
@@ -110,22 +101,6 @@
 
     // 调用 displayTables() 来初始化表格
     displayTables();
-
-    //----------------------------------------------------------------------
-
-    var db = firebase.database();
-    db.ref("/number")
-    var path = "number";
-    db.ref(`/${path}`)
-
-    db.ref("/number/1").set({
-    seat: 2
-})
-.then(function () {
-    alert("建立成功");
-}).catch(function () {
-    alert("伺服器發生錯誤，請稍後再試");
-});
-</script>
+  </script>
 </body>
 </html>
