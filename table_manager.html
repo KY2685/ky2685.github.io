@@ -56,6 +56,87 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+    
+  //---------------------------------------------------------------------------------------------
+
+    function openTable() {
+      var tableNumber = prompt('請輸入桌子號碼：');
+      var seats = prompt('請輸入座位數目：');
+
+      // 更新桌子的座位數目
+      database.ref('tables/' + tableNumber).set({
+        tableNumber: tableNumber,
+        seats: seats,
+        status: '未開桌'
+      }, function(error) {
+        if (error) {
+          alert('更新桌子座位數目失敗：' + error.message);
+        } else {
+          alert('成功更新桌子座位數目！');
+          displayTables();
+        }
+      });
+    }
+
+    function displayTables() {
+      var tableList = document.getElementById('tableList');
+      tableList.innerHTML = '';
+
+      database.ref('tables').once('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var table = childSnapshot.val();
+
+          var row = document.createElement('tr');
+
+          var tableNumberCell = document.createElement('td');
+          tableNumberCell.textContent = table.tableNumber;
+          row.appendChild(tableNumberCell);
+
+          var seatsCell = document.createElement('td');
+          seatsCell.textContent = table.seats;
+          row.appendChild(seatsCell);
+
+          var statusCell = document.createElement('td');
+          statusCell.textContent = table.status;
+          row.appendChild(statusCell);
+
+          var actionCell = document.createElement('td');
+          var openButton = document.createElement('button');
+          openButton.textContent = '開桌';
+          openButton.setAttribute('data-table-number', table.tableNumber);
+          openButton.onclick = function() {
+            var tableNumber = this.getAttribute('data-table-number');
+            openTableForNumber(tableNumber);
+          };
+          actionCell.appendChild(openButton);
+
+          row.appendChild(actionCell);
+
+          tableList.appendChild(row);
+        });
+      });
+    }
+
+    function openTableForNumber(tableNumber) {
+      var seats = prompt('請輸入座位數目：');
+
+      // 更新桌子的座位數目
+      database.ref('tables/' + tableNumber).update({
+        seats: seats
+      }, function(error) {
+        if (error) {
+          alert('更新桌子座位數目失敗：' + error.message);
+        } else {
+          alert('成功更新桌子座位數目！');
+          displayTables();
+        }
+      });
+    }
+
+    // 調用 displayTables() 以初始化表格
+    displayTables();
+
+    
 </script>
 </body>
 </html>
