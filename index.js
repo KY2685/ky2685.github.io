@@ -8,7 +8,7 @@ function validateLoginForm(event) {
   var password = passwordInput.value;
 
   if (username === "ADMIN" && password === "ADMIN"|| username === "Admin" && password === "Admin"|| username === "admin" && password === "admin") {
-    window.location.href = "manager.html";
+    window.location.href = "table_manager.html";
   } else {
     alert("無效的帳號或密碼！");
   }
