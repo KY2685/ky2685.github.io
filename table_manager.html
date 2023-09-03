@@ -58,14 +58,14 @@
 const db = getFirestore(app);
 
 // Add a new document in collection "cities"
-await setDoc(doc(db, "cities", "LA"), {
-  name: "Los Angeles",
-  state: "CA",
-  country: "USA"
+await setDoc(doc(db, "tables", "id"), {
+  tablenum: "1",
+  seat: "0",
+  status: "available"
 });
 
-const cityRef = doc(db, 'cities', 'BJ');
-setDoc(cityRef, { capital: true }, { merge: true });
+const tableRef = doc(db, 'tables', 'id', tablenum, seat, status);
+setDoc(tableRef, { capital: true }, { merge: true });
     
 
 </script>
