@@ -86,9 +86,9 @@
       for (var i = 1; i <= 12; i++) {
         var tableRef = database.ref('tables/' + i);
         tableRef.set({
-          tableNumber: i,
+          number: i,
           seats: 4,
-          status: '空闲'
+          status: 'available'
         }, function(error) {
           if (error) {
             console.log("数据写入失败：" + error);
