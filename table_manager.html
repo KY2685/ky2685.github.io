@@ -64,7 +64,55 @@ async function getCities(db) {
   return cityList;
 }
 
-// [END rtdb_write_new_user]
+//--------------------------------------------------------------------------------------
+
+    function writeData() {
+      // 将数据写入 Firestore
+      for (var i = 1; i <= 12; i++) {
+        addDoc(collection(firestore, 'tables'), {
+          tableNumber: i,
+          seats: 4, // 每张桌子的默认人数为4
+          status: '空闲' // 每张桌子的默认状态为'空闲'
+        }).then(() => {
+          console.log("数据写入成功！");
+        }).catch((error) => {
+          console.log("数据写入失败：" + error);
+        });
+      }
+    }
+
+    function displayTables() {
+      var tableList = document.getElementById('table-list');
+      tableList.innerHTML = '';
+
+      getDocs(collection(firestore, 'tables')).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const table = doc.data();
+
+          var row = document.createElement('tr');
+
+          var tableNumberCell = document.createElement('td');
+          tableNumberCell.textContent = table.tableNumber;
+          row.appendChild(tableNumberCell);
+
+          var seatsCell = document.createElement('td');
+          seatsCell.textContent = table.seats;
+          row.appendChild(seatsCell);
+
+          var statusCell = document.createElement('td');
+          statusCell.textContent = table.status;
+          row.appendChild(statusCell);
+
+          tableList.appendChild(row);
+        });
+      });
+    }
+
+    // 调用 writeData() 来将数据写入 Firestore
+    writeData();
+
+    // 调用 displayTables() 来初始化表格
+    displayTables();
 </script>
 </body>
 </html>
