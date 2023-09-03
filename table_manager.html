@@ -58,7 +58,7 @@
       var tableList = document.getElementById('table-list');
       tableList.innerHTML = '';
 
-      database.ref('tables').on('value', function(snapshot) {
+      db.ref('tables').on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           var table = childSnapshot.val();
 
@@ -84,14 +84,15 @@
     function writeData() {
   // 将数据写入 Firebase 数据库
   for (var i = 1; i <= 12; i++) {
-    const tableRef = ref(db, 'tables/' + i);
-    set(tableRef, {
+    firebase.database().ref('tables/' + i).set({
       tableNumber: i,
       seats: 4, // 每张桌子的默认人数为4
       status: '空闲' // 每张桌子的默认状态为'空闲'
-    }).then(() => {
+    })
+    .then(() => {
       console.log("数据写入成功！");
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.log("数据写入失败：" + error);
     });
   }
