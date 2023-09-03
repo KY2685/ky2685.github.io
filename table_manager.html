@@ -75,7 +75,6 @@ const db = getFirestore(app);
       }
   
 
-    function displayTables() {
       var tableList = document.getElementById('table-list');
       tableList.innerHTML = '';
 
@@ -100,13 +99,7 @@ const db = getFirestore(app);
           tableList.appendChild(row);
         });
       });
-    }
 
-    // 调用 writeData() 来将数据写入 Firestore
-    writeData();
-
-    // 调用 displayTables() 来初始化表格
-    displayTables();
 </script>
 </body>
 </html>
