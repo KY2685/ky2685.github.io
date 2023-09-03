@@ -91,11 +91,15 @@
         var tableRef = database.ref('tables/' + i);
         tableRef.set({
           tableNumber: i,
-          seats: 4, // 每张桌子的默认人数为4
-          status: '空闲' // 每张桌子的默认状态为'空闲'
+          seats: 4,
+          status: '空闲'
+        }, function(error) {
+          if (error) {
+            console.log("数据写入失败：" + error);
+          } else {
+            console.log("数据写入成功！");
+          }
         });
-      }
-    }
 
     // 调用 writeData() 来将数据写入 Firebase 数据库
     writeData();
