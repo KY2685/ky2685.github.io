@@ -60,7 +60,6 @@ const db = getFirestore(app);
 //----------------------------------------------------------
 
     
-    function writeData() {
       // 将数据写入 Firestore
       for (var i = 1; i <= 12; i++) {
         await setDoc(doc(db, "tables", "id"), {
@@ -73,7 +72,7 @@ const db = getFirestore(app);
           console.log("数据写入失败：" + error);
         });
       }
-    }
+  
 
     function displayTables() {
       var tableList = document.getElementById('table-list');
