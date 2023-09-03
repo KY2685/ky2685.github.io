@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Asia Catering</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
   <link rel="stylesheet" type="text/css" href="index.css">
   <link rel="stylesheet" type="text/css" href="manager.css">
 </head>
@@ -33,20 +34,20 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyBDK_0N8joTxl24VD8nyTJVLiMYGNhEX4A",
-    authDomain: "ordersystem-9032b.firebaseapp.com",
-    databaseURL: "https://ordersystem-9032b-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "ordersystem-9032b",
-    storageBucket: "ordersystem-9032b.appspot.com",
-    messagingSenderId: "506054131652",
-    appId: "1:506054131652:web:58f99fa3f9099ec671ee91",
-    measurementId: "G-CPWPWX6829"
+  apiKey: "AIzaSyByp1El_URDkLSgjvkp203M12nU7AYjiS4",
+  authDomain: "fypcomp1682.firebaseapp.com",
+  projectId: "fypcomp1682",
+  storageBucket: "fypcomp1682.appspot.com",
+  messagingSenderId: "795503629021",
+  appId: "1:795503629021:web:7ca00e90d91251d2118134",
+  measurementId: "G-TY598ERJD1"
   };
 
   // Initialize Firebase
@@ -54,25 +55,15 @@
   const analytics = getAnalytics(app);
 
     //---------------------------------------
-  import firebase from "firebase/app";
-import "firebase/database";
 
-function getReference() {
-  // [START rtdb_get_reference]
-  var database = firebase.database();
-  // [END rtdb_get_reference]
+    // Get a list of cities from your database
+async function getCities(db) {
+  const citiesCol = collection(db, 'cities');
+  const citySnapshot = await getDocs(citiesCol);
+  const cityList = citySnapshot.docs.map(doc => doc.data());
+  return cityList;
 }
 
-    //----------------------------------------
-
-    // [START rtdb_write_new_user]
-function writeUserData(userId, name, email, imageUrl) {
-  firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
-}
 // [END rtdb_write_new_user]
 </script>
 </body>
