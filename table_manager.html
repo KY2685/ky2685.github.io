@@ -84,7 +84,12 @@ async function generateTable() {
   const querySnapshot = await getDocs(tableRef);
 
   // 创建表格的 HTML 字符串
-  let tableHTML = "<table><tr><th>桌号</th><th>座位数</th><th>状态</th></tr>";
+  let tableHTML = `<table style="border-collapse: collapse;">
+                      <tr>
+                        <th style="border: 1px solid black; padding: 5px;">桌号</th>
+                        <th style="border: 1px solid black; padding: 5px;">座位数</th>
+                        <th style="border: 1px solid black; padding: 5px;">状态</th>
+                      </tr>`;
 
   querySnapshot.forEach((doc) => {
     const tableData = doc.data();
@@ -92,7 +97,11 @@ async function generateTable() {
     const seats = tableData.seats;
     const status = tableData.status;
 
-    tableHTML += `<tr><td>${tableNumber}</td><td>${seats}</td><td>${status}</td></tr>`;
+    tableHTML += `<tr>
+                    <td style="border: 1px solid black; padding: 5px;">${tableNumber}</td>
+                    <td style="border: 1px solid black; padding: 5px;">${seats}</td>
+                    <td style="border: 1px solid black; padding: 5px;">${status}</td>
+                  </tr>`;
   });
 
   tableHTML += "</table>";
