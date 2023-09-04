@@ -34,7 +34,7 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
-  import { getFirestore, doc, setDoc, Timestamp, collection } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+  import { getFirestore, doc, setDoc, getDocs, Timestamp, collection } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -78,7 +78,31 @@ tableIds.forEach(async (tableId, index) => {
   }
 });
   
+async function generateTable() {
+  const tableRef = collection(db, "tables");
+  const querySnapshot = await getDocs(tableRef);
 
+  // 创建表格的 HTML 字符串
+  let tableHTML = "<table><tr><th>桌号</th><th>座位数</th><th>状态</th></tr>";
+
+  querySnapshot.forEach((doc) => {
+    const tableData = doc.data();
+    const tableNumber = tableData.tableNumber;
+    const seats = tableData.seats;
+    const status = tableData.status;
+
+    tableHTML += `<tr><td>${tableNumber}</td><td>${seats}</td><td>${status}</td></tr>`;
+  });
+
+  tableHTML += "</table>";
+
+  // 将表格添加到页面中的一个元素中
+  const tableContainer = document.getElementById("tableContainer");
+  tableContainer.innerHTML = tableHTML;
+}
+
+// 调用生成表格的函数
+generateTable();
 
 </script>
 </body>
