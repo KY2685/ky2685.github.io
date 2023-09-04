@@ -80,7 +80,7 @@ tableIds.forEach(async (tableId, index) => {
   
 async function generateTable() {
   const tableRef = collection(db, "tables");
-  const querySnapshot = await getDocs(tableRef);
+  const querySnapshot = await getDocs(query(tableRef, orderBy("tableNumber")));
 
   // 创建表格的 HTML 字符串
   let tableHTML = `<table class="custom-table">
