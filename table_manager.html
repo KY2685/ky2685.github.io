@@ -78,6 +78,7 @@ tableIds.forEach(async (tableId, index) => {
   }
 });
   
+// 获取数据并生成表格
 async function generateTable() {
   const tableRef = collection(db, "tables");
   const querySnapshot = await getDocs(tableRef);
@@ -101,9 +102,8 @@ async function generateTable() {
   tableContainer.innerHTML = tableHTML;
 }
 
-// 调用生成表格的函数
-generateTable();
-
+// 在文档加载完成后调用生成表格的函数
+document.addEventListener("DOMContentLoaded", generateTable);
 </script>
 </body>
 </html>
