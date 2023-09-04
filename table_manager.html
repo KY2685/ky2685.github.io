@@ -78,10 +78,10 @@ tableIds.forEach(async (tableId, index) => {
   }
 });
   
+  // 获取数据并生成表格
 async function generateTable() {
   const tableRef = collection(db, "tables");
-  const q = query(tableRef, orderBy("tableNumber"));
-  const querySnapshot = await getDocs(q);
+  const querySnapshot = await getDocs(tableRef);
 
   // 创建表格的 HTML 字符串
   let tableHTML = `<table class="custom-table">
@@ -94,14 +94,15 @@ async function generateTable() {
   querySnapshot.forEach((doc) => {
     const tableData = doc.data();
     const tableNumber = tableData.tableNumber;
-    const seats = tableData.seats;
-    const status = tableData.status;
+    const seats = String(tableData.seats); // 将 seats 转换为字符串
 
-    console.log(typeof seats);
-console.log(seats);
+    // 检查 seats 是否包含有效的分子和分母
+    const seatParts = seats.split("/");
+    const numerator = seatParts[0] || ""; // 分子，默认为空字符串
+    const denominator = seatParts[1] || "0"; // 分母，默认为 0
 
-const [numerator, denominator] = seats.split("/");
     const formattedSeats = `${numerator} (${denominator}/4)`;
+    const status = tableData.status;
 
     tableHTML += `<tr>
                     <td>${tableNumber}</td>
@@ -113,7 +114,7 @@ const [numerator, denominator] = seats.split("/");
   tableHTML += "</table>";
 
   // 将表格添加到页面中的一个元素中
-  const tableContainer = document.getElementById("table-list");
+  const tableContainer = document.getElementById("tableContainer");
   tableContainer.innerHTML = tableHTML;
 }
 
