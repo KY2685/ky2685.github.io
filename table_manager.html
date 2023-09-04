@@ -34,7 +34,7 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
-  import { getFirestore, doc, addDoc, setDoc, Timestamp, collection } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+  import { getFirestore, doc, setDoc, Timestamp, collection } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -60,19 +60,23 @@ const db = getFirestore(app);
 //----------------------------------------------------------
 
     
-      for (var i = 1; i <= 12; i++) {
-  const docRef = await addDoc(collection(db, "tables"), {
-    tableNumber: i,
-    seats: 4, // 每张桌子的默认人数为4
-    status: "available" // 每张桌子的默认状态为'空闲'
-  })
-    .then(() => {
-      console.log("数据写入成功！");
-    })
-    .catch((error) => {
-      console.log("数据写入失败：" + error);
+  // 将数据写入 Firestore
+const tableIds = ["table1", "table2", "table3", "table4", "table5", "table6", "table7", "table8", "table9", "table10", "table11", "table12"];
+
+tableIds.forEach(async (tableId, index) => {
+  const docRef = doc(db, "tables", tableId);
+
+  try {
+    await setDoc(docRef, {
+      tableNumber: index + 1,
+      seats: 4, // 每张桌子的默认人数为4
+      status: "available" // 每张桌子的默认状态为'空闲'
     });
-}
+    console.log(`桌子 ${tableId} 数据写入成功！`);
+  } catch (error) {
+    console.log(`桌子 ${tableId} 数据写入失败：${error}`);
+  }
+});
   
 
 
