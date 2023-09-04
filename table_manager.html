@@ -97,7 +97,10 @@ async function generateTable() {
     const seats = tableData.seats;
     const status = tableData.status;
 
-    const [numerator, denominator] = seats.split("/");
+    console.log(typeof seats);
+console.log(seats);
+
+const [numerator, denominator] = seats.split("/");
     const formattedSeats = `${numerator} (${denominator}/4)`;
 
     tableHTML += `<tr>
