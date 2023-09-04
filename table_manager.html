@@ -34,7 +34,7 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
-  import { getFirestore, doc, addDoc, setDoc, Timestamp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+  import { getFirestore, doc, addDoc, setDoc, Timestamp, collection } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -61,7 +61,7 @@ const db = getFirestore(app);
 
     
       for (var i = 1; i <= 12; i++) {
-  await addDoc(collection(db, "tables"), {
+  const docRef = await addDoc(collection(db, "tables"), {
     tableNumber: i,
     seats: 4, // 每张桌子的默认人数为4
     status: "available" // 每张桌子的默认状态为'空闲'
