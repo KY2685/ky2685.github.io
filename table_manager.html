@@ -97,7 +97,8 @@ async function generateTable() {
     const tableNumber = tableData.tableNumber;
     const seats = String(tableData.seats); // 将 seats 转换为字符串
 
-    // 检查 seats 是否包含有效的分子和分母
+    // 检查 seats 
+    const [numerator, denominator] = seats.split("/");
     const numerator = seatParts[0] || ""; // 分子，默认为空字符串
     const denominator = seatParts[1] || "4"; // 分母，默认为 0
 
