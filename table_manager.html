@@ -98,7 +98,6 @@ async function generateTable() {
     const seats = String(tableData.seats); // 将 seats 转换为字符串
 
     // 检查 seats 是否包含有效的分子和分母
-    const seatParts = seats.split("/");
     const numerator = seatParts[0] || ""; // 分子，默认为空字符串
     const denominator = seatParts[1] || "0"; // 分母，默认为 0
 
