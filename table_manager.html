@@ -94,7 +94,7 @@ async function generateTable() {
 
   querySnapshot.forEach((doc) => {
     const tableData = doc.data();
-    const tableNumber = tableData.tableNumber;
+    const tableNumber = String(tableData.tableNumber).padStart(2, "0"); // 使用 padStart() 方法将桌号填充为两位数
     const seats = String(tableData.seats); // 将 seats 转换为字符串
 
     // 检查 seats 
