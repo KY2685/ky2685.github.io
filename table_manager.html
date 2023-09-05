@@ -61,7 +61,7 @@ const db = getFirestore(app);
 
     
   // 将数据写入 Firestore
-const tableIds = ["table_01", "table_02", "table_03", "table_04", "table_05", "table_06", "table_07", "table_08", "table_09", "table_10", "table_11", "table_12"];
+const tableIds = Array.from({ length: 12 }, (_, index) => `table_${String(index + 1).padStart(2, "0")}`);
 
 tableIds.forEach(async (tableId, index) => {
   const docRef = doc(db, "tables", tableId);
