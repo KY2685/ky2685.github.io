@@ -68,7 +68,7 @@ tableIds.forEach(async (tableId, index) => {
 
   try {
     await setDoc(docRef, {
-      tableNumber: index + 1,
+      tableNumber: index + 01,
       seats: 4, // 每张桌子的默认人数为4
       status: "available" // 每张桌子的默认状态为'空闲'
     });
