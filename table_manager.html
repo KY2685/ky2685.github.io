@@ -99,8 +99,10 @@ async function generateTable() {
 
     // 检查 seats 
     const seatParts = seats.split("/");
-    const numerator = seatParts[0] || "0"; // 分子，默认为空字符串
-    const denominator = seatParts[1] || "4"; // 分母，默认为 0
+    
+    const denominator = seatParts[0] || "4"; // 分母，默认为 0
+const numerator = seatParts[1] || ""; // 分子，默认为空字符串
+
 
     const formattedSeats = `${numerator} / ${denominator}`;
     const status = tableData.status;
