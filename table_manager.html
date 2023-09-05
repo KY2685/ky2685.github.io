@@ -102,7 +102,7 @@ async function generateTable() {
     const numerator = seatParts[0] || ""; // 分子，默认为空字符串
     const denominator = seatParts[1] || "0"; // 分母，默认为 0
 
-    const formattedSeats = `${numerator} (${denominator}/4)`;
+    const formattedSeats = `${numerator} / (${denominator})`;
     const status = tableData.status;
 
     tableHTML += `<tr>
