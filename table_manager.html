@@ -101,7 +101,7 @@ async function generateTable() {
     const seatParts = seats.split("/");
     
     const denominator = seatParts[0] || "4"; // 分母，默认为 0
-const numerator = seatParts[1] || ""; // 分子，默认为空字符串
+const numerator = seatParts[1] || "0"; // 分子，默认为空字符串
 
 
     const formattedSeats = `${numerator} / ${denominator}`;
