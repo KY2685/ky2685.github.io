@@ -98,7 +98,7 @@ async function generateTable() {
     const seats = String(tableData.seats); // 将 seats 转换为字符串
 
     // 检查 seats 
-    const [numerator, denominator] = seats.split("/");
+    const seatParts = seats.split("/");
     const numerator = seatParts[0] || ""; // 分子，默认为空字符串
     const denominator = seatParts[1] || "4"; // 分母，默认为 0
 
