@@ -95,7 +95,7 @@ async function generateTable() {
   querySnapshot.forEach((doc) => {
     const tableData = doc.data();
     const tableNumber = tableData.tableNumber;
-    const seats = String(tableData.seats); // 将 seats 转换为字符串
+    const seats = tableData.seats; // 将 seats 转换为字符串
 
     // 检查 seats 
     const seatParts = seats.split("/");
