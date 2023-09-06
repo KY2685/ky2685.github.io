@@ -90,6 +90,7 @@ async function generateTable() {
                         <th>桌号</th>
                         <th>座位（人数/总数）</th>
                         <th>状态</th>
+                        <th>操作</th>
                       </tr>`;
 
   querySnapshot.forEach((doc) => {
@@ -104,6 +105,10 @@ async function generateTable() {
                     <td>${tableNumber}</td>
                     <td>${formattedSeats}</td>
                     <td>${status}</td>
+                    <td>
+                        <button onclick="generateQRCode('${qrCodeId}', '${tableId}')">开桌</button>
+                        <div id="${qrCodeId}"></div>
+                      </td>
                   </tr>`;
   });
 
@@ -113,6 +118,20 @@ async function generateTable() {
   const tableContainer = document.getElementById("table-list");
   tableContainer.innerHTML = tableHTML;
 }
+
+    // 生成 QR Code
+function generateQRCode(qrCodeId, tableId) {
+  const qrCodeElement = document.getElementById(qrCodeId);
+
+  // 使用 qrcode-generator 库生成 QR Code
+  const qr = QRCode(4, "M");
+  qr.addData(tableId);
+  qr.make();
+
+  const qrCodeImage = qr.createImgTag();
+  qrCodeElement.innerHTML = qrCodeImage;
+}
+
 
 // 在文档加载完成后调用生成表格的函数
 document.addEventListener("DOMContentLoaded", generateTable);
