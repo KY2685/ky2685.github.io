@@ -97,14 +97,9 @@ async function generateTable() {
     const tableNumber = tableData.tableNumber;
     const seats = tableData.seats; // 将 seats 转换为字符串
 
-    // 检查 seats 
-    const seatParts = seats.split("/");
-    
-    const denominator = seatParts[0] || "4"; // 分母，默认为 0
-const numerator = seatParts[1] || "0"; // 分子，默认为空字符串
 
 
-    const formattedSeats = `${numerator} / ${denominator}`;
+    const formattedSeats = `${seat} / 4`;
     const status = tableData.status;
 
     tableHTML += `<tr>
