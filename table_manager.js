@@ -18,7 +18,7 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
-    const database = getDatabase(app);
+    const db = getDatabase(app);
 
     function displayTables() {
       var tableList = document.getElementById('table-list');
@@ -47,21 +47,27 @@
       });
     }
 
-function writeData() {
-      // 将数据写入 Firebase 数据库
-      for (var i = 1; i <= 12; i++) {
-        var tableRef = database.ref('tables/' + i);
-        tableRef.set({
-          tableNumber: i,
-          seats: 4,
-          status: '空闲'
-        }, function(error) {
-          if (error) {
-            console.log("数据写入失败：" + error);
-          } else {
-            console.log("数据写入成功！");
-          }
-        })}};
+// 导入 Firestore 相关的函数
+import { collection, addDoc } from "firebase/firestore";
+
+// 将数据写入 Firestore
+    const tableIds = Array.from({ length: 12 }, (_, index) => `table_${String(index + 1).padStart(2, "0")}`);
+
+    tableIds.forEach(async (tableId, index) => {
+      const docRef = doc(db, "tables", tableId);
+
+      try {
+        await setDoc(docRef, {
+          tableNumber: index + 1,
+          seats: 4, // 每张桌子的默认人数为4
+          status: "available" // 每张桌子的默认状态为'空闲'
+        });
+        console.log(`桌子 ${tableId} 数据写入成功！`);
+      } catch (error) {
+        console.log(`桌子 ${tableId} 数据写入失败：${error}`);
+      }
+    });
+
 
           // 调用 writeData() 来将数据写入 Firebase 数据库
     writeData();
