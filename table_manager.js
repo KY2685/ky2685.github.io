@@ -57,7 +57,7 @@ function generateTable() {
   const tablesRef = ref(db, "tables");
 
   // 创建表格的 HTML 字符串
-  let tableHTML = `<table class="custom-table">
+  let tableHTML = `<table class="tableContainer">
                       <tr>
                         <th>桌号</th>
                         <th>座位（人数/总数）</th>
