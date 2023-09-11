@@ -2,7 +2,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
     import { getFirestore, doc, setDoc, getDocs, Timestamp, collection, query, orderBy } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
-    import { getDatabase } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -19,7 +18,7 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
-    const db = getDatabase(app);
+    const db = getFirestore(app);
 
     function displayTables() {
       var tableList = document.getElementById('table-list');
