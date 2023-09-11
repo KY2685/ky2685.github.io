@@ -62,3 +62,8 @@ function writeData() {
             console.log("数据写入成功！");
           }
         });
+// 调用 writeData() 来将数据写入 Firebase 数据库
+    writeData();
+
+    // 调用 displayTables() 来初始化表格
+    displayTables();
