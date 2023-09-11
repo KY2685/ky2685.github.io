@@ -44,10 +44,12 @@ tableIds.forEach(async (tableId, index) => {
     console.log(`桌子 ${tableId} 数据写入失败：${error}`);
   }
 });
-  
 
-// 假设你使用的是 qrcode-generator 库来生成 QR Code
-import QRCode from "qrcode-generator";
+//----------------------------------------------
+
+
+// 假设你使用的是 Firebase 实时数据库作为数据存储
+import { getDatabase, ref, onValue } from "firebase/database";
 
 // 获取数据并生成表格
 function generateTable() {
@@ -74,16 +76,10 @@ function generateTable() {
       const formattedSeats = `(${denominator}/${denominator})`;
       const status = "状态"; // 使用你的状态数据
 
-      const qrCodeId = `qrCode_${tableId}`; // 为每个 QR Code 元素生成唯一的 ID
-
       tableHTML += `<tr>
                       <td>${tableId}</td>
                       <td>${formattedSeats}</td>
                       <td>${status}</td>
-                      <td>
-                        <button onclick="generateQRCode('${qrCodeId}', '${tableId}')">开桌</button>
-                        <div id="${qrCodeId}"></div>
-                      </td>
                     </tr>`;
     });
 
@@ -93,19 +89,6 @@ function generateTable() {
     const tableContainer = document.getElementById("tableContainer");
     tableContainer.innerHTML = tableHTML;
   });
-}
-
-// 生成 QR Code
-function generateQRCode(qrCodeId, tableId) {
-  const qrCodeElement = document.getElementById(qrCodeId);
-
-  // 使用 qrcode-generator 库生成 QR Code
-  const qr = QRCode(4, "M");
-  qr.addData(tableId);
-  qr.make();
-
-  const qrCodeImage = qr.createImgTag();
-  qrCodeElement.innerHTML = qrCodeImage;
 }
 
 // 在文档加载完成后调用生成表格的函数
