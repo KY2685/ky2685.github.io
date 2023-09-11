@@ -46,3 +46,19 @@
         });
       });
     }
+
+function writeData() {
+      // 将数据写入 Firebase 数据库
+      for (var i = 1; i <= 12; i++) {
+        var tableRef = database.ref('tables/' + i);
+        tableRef.set({
+          tableNumber: i,
+          seats: 4,
+          status: '空闲'
+        }, function(error) {
+          if (error) {
+            console.log("数据写入失败：" + error);
+          } else {
+            console.log("数据写入成功！");
+          }
+        });
