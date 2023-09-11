@@ -46,10 +46,13 @@ tableIds.forEach(async (tableId, index) => {
 });
   
 
+// 假设你使用的是 qrcode-generator 库来生成 QR Code
+import QRCode from "qrcode-generator";
+
 // 获取数据并生成表格
-async function generateTable() {
-  const tableRef = collection(db, "tables");
-  const querySnapshot = await getDocs(tableRef);
+function generateTable() {
+  const db = getDatabase();
+  const tablesRef = ref(db, "tables");
 
   // 创建表格的 HTML 字符串
   let tableHTML = `<table class="custom-table">
@@ -60,34 +63,39 @@ async function generateTable() {
                         <th>操作</th>
                       </tr>`;
 
-  querySnapshot.forEach((doc) => {
-    const tableData = doc.data();
-    const tableNumber = tableData.tableNumber;
-    const seats = tableData.seats; // 将 seats 转换为字符串
+  onValue(tablesRef, (snapshot) => {
+    const tablesData = snapshot.val();
 
-    const formattedSeats = tableData.seats + "/ 4";
-    const status = tableData.status;
-     const qrCodeId = `qrCode_${tableId}`; // 为每个 QR Code 元素生成唯一的 ID
+    Object.keys(tablesData).forEach((tableId) => {
+      const table = tablesData[tableId];
+      const seats = table.seats;
+      const denominator = seats >= 0 ? seats : 0;
 
-    tableHTML += `<tr>
-                    <td>${tableNumber}</td>
-                    <td>${formattedSeats}</td>
-                    <td>${status}</td>
-                    <td>
+      const formattedSeats = `(${denominator}/${denominator})`;
+      const status = "状态"; // 使用你的状态数据
+
+      const qrCodeId = `qrCode_${tableId}`; // 为每个 QR Code 元素生成唯一的 ID
+
+      tableHTML += `<tr>
+                      <td>${tableId}</td>
+                      <td>${formattedSeats}</td>
+                      <td>${status}</td>
+                      <td>
                         <button onclick="generateQRCode('${qrCodeId}', '${tableId}')">开桌</button>
                         <div id="${qrCodeId}"></div>
                       </td>
-                  </tr>`;
+                    </tr>`;
+    });
+
+    tableHTML += "</table>";
+
+    // 将表格添加到页面中的一个元素中
+    const tableContainer = document.getElementById("tableContainer");
+    tableContainer.innerHTML = tableHTML;
   });
-
-  tableHTML += "</table>";
-
-  // 将表格添加到页面中的一个元素中
-  const tableContainer = document.getElementById("table-list");
-  tableContainer.innerHTML = tableHTML;
 }
 
-    // 生成 QR Code
+// 生成 QR Code
 function generateQRCode(qrCodeId, tableId) {
   const qrCodeElement = document.getElementById(qrCodeId);
 
@@ -100,7 +108,5 @@ function generateQRCode(qrCodeId, tableId) {
   qrCodeElement.innerHTML = qrCodeImage;
 }
 
-
 // 在文档加载完成后调用生成表格的函数
 document.addEventListener("DOMContentLoaded", generateTable);
-    document.addEventListener("DOMContentLoaded", generateTable);
