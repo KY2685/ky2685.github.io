@@ -88,7 +88,6 @@ async function generateTable() {
 
     const formattedSeats = tableData.seats + "/ 4";
     const status = tableData.status;
-     const qrCodeId = `qrCode_${tableId}`; // 为每个 QR Code 元素生成唯一的 ID
 
     tableHTML += `<tr>
                     <td>${tableNumber}</td>
