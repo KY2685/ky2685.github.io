@@ -89,19 +89,6 @@ async function generateTable() {
     const formattedSeats = tableData.seats + "/ 4";
     const status = tableData.status;
 
-    tableHTML += `<tr>
-                    <td>${tableNumber}</td>
-                    <td>${formattedSeats}</td>
-                    <td>${status}</td>
-                    <td>
-                        <button onclick="generateQRCode('${qrCodeId}', '${tableId}')">开桌</button>
-                        <div id="${qrCodeId}"></div>
-                      </td>
-                  </tr>`;
-  });
-
-  tableHTML += "</table>";
-
   // 将表格添加到页面中的一个元素中
   const tableContainer = document.getElementById("table-list");
   tableContainer.innerHTML = tableHTML;
