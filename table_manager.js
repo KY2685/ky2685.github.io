@@ -108,19 +108,6 @@ async function generateTable() {
   tableContainer.innerHTML = tableHTML;
 }
 
-    // 生成 QR Code
-function generateQRCode(qrCodeId, tableId) {
-  const qrCodeElement = document.getElementById(qrCodeId);
-
-  // 使用 qrcode-generator 库生成 QR Code
-  const qr = QRCode(4, "M");
-  qr.addData(tableId);
-  qr.make();
-
-  const qrCodeImage = qr.createImgTag();
-  qrCodeElement.innerHTML = qrCodeImage;
-}
-
 
 // 在文档加载完成后调用生成表格的函数
 document.addEventListener("DOMContentLoaded", generateTable);
