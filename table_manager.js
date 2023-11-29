@@ -68,6 +68,7 @@ tableIds.forEach(async (tableId, index) => {
 
 
 // 获取数据并生成表格
+// 获取数据并生成表格
 async function generateTable() {
   const tableRef = collection(db, "tables");
   const querySnapshot = await getDocs(tableRef);
@@ -80,21 +81,31 @@ async function generateTable() {
                         <th>状态</th>
                         <th>操作</th>
                       </tr>`;
-
+                      
   querySnapshot.forEach((doc) => {
     const tableData = doc.data();
     const tableNumber = tableData.tableNumber;
     const seats = tableData.seats; // 将 seats 转换为字符串
 
-    const formattedSeats = tableData.seats + "/ 4";
+    const formattedSeats = seats + "/ 4";
     const status = tableData.status;
+
+    // 添加新行到表格 HTML
+    tableHTML += `<tr>
+                    <td>${tableNumber}</td>
+                    <td>${formattedSeats}</td>
+                    <td>${status}</td>
+                    <td>操作按钮</td>
+                  </tr>`;
+  });
+
+  // 结束表格 HTML
+  tableHTML += `</table>`;
 
   // 将表格添加到页面中的一个元素中
   const tableContainer = document.getElementById("table-list");
   tableContainer.innerHTML = tableHTML;
 }
 
-
 // 在文档加载完成后调用生成表格的函数
 document.addEventListener("DOMContentLoaded", generateTable);
-    document.addEventListener("DOMContentLoaded", generateTable);
